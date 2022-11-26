@@ -65,6 +65,3 @@ var Restaurant = require("./models/restaurant");
 
 app.listen(port);
 console.log("App listening on port : " + port);
-
-
-const something = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

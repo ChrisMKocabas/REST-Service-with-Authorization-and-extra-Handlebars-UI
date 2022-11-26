@@ -27,7 +27,11 @@ async function initialize() {
 
 async function addNewRestaurant(data) {}
 
-async function getAllRestaurants(page, perPage, borough) {}
+async function getAllRestaurants(page, perPage, borough) {
+
+    const something = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+}
 
 async function getRestaurantById(Id) {}
 
