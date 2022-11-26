@@ -1,6 +1,12 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var app = express();
+
+//import and configure cors
+const cors = require("cors");
+app.use(cors({ origin: "*" }));
+
+
 var database = require("./config/database");
 var bodyParser = require("body-parser"); // pull information from HTML POST (express4)
 // import path
