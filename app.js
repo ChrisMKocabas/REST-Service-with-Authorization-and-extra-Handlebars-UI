@@ -6,11 +6,9 @@ var app = express();
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
-//connecting to database.js
-const db = require("./db")
-const restaurants ="data";
-const sample_restaurants ="restaurants";
-
+//connecting to db.js
+var db = require("./db");
+db.initialize();
 
 var database = require("./config/database");
 var bodyParser = require("body-parser"); // pull information from HTML POST (express4)
@@ -67,3 +65,6 @@ var Restaurant = require("./models/restaurant");
 
 app.listen(port);
 console.log("App listening on port : " + port);
+
+
+const something = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
