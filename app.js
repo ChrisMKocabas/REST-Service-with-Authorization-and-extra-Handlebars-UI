@@ -6,6 +6,11 @@ var app = express();
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
 
+//connecting to database.js
+const db = require("./db")
+const restaurants ="data";
+const sample_restaurants ="restaurants";
+
 
 var database = require("./config/database");
 var bodyParser = require("body-parser"); // pull information from HTML POST (express4)
