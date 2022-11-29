@@ -33,7 +33,7 @@ async function getAllRestaurants(
 ) {
   
   //if borough not provided
-  if(borough = "") {
+  if(borough = {}) {
 
     try {
       // all restaurants 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
@@ -42,7 +42,7 @@ async function getAllRestaurants(
     } catch (err) {
       console.log("Required parameters missing.", err);
     }
-  } else {
+  } else { //if borough provided
     try {
       //all restaurants fitered by specific borough provided
       // 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
