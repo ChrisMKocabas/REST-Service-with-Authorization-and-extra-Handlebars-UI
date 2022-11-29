@@ -1,7 +1,8 @@
 // load mongoose since we need it to define a model
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-RestaurantSchema = new Schema({
+
+const RestaurantSchema = new Schema({
   address: {
     building: String,
     coord: [{ Number }],
@@ -15,3 +16,4 @@ RestaurantSchema = new Schema({
   restaurant_id: String,
 });
 module.exports = mongoose.model("Restaurant", RestaurantSchema, "restaurants");
+

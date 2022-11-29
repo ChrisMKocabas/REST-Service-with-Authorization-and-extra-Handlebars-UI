@@ -1,43 +1,76 @@
 var mongoose = require("mongoose");
 var database = require("./config/database");
+const restaurant = require("./models/restaurant");
+var Restaurant = require("./models/restaurant");
 
-const MongoClient = require("mongodb").MongoClient;
-
-async function initialize() {
-  const client = await MongoClient.connect(database.url, {
-    useNewUrlParser: true,
-  }).catch((err) => {
-    console.log(err);
-  });
-
-  if (!client) return;
-
+//Muhammed
+const initialize = async function initialize(db) {
   try {
-    const dbase = client.db("sample_restaurants");
-
-    const res = await dbase.collection("restaurants");
-
-    console.log("Connection established", dbase, res);
+    await mongoose.connect(db.url);
+    var Restaurant = require("./models/restaurant");
+    return Restaurant;
   } catch (err) {
-    console.log(err);
-  } finally {
-    client.close();
+    console.log("Failed to connect to Atlas!", err);
+  }
+};
+
+//Tati
+async function addNewRestaurant(data) {
+  try {
+    const newRestaurant = await Restaurant.save()
+    return newRestaurant;
+  } catch (err) {
+    console.log("Unable to add new restaurant.", err);
   }
 }
 
-async function addNewRestaurant(data) {}
-
-async function getAllRestaurants(page, perPage, borough) {
-
-    const something = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
+//Tati
+async function getAllRestaurants(
+  page,
+  perPage,
+  borough = /^(?!\s*$).+/
+  /*borough will match all entries and bring all, if no borough specified*/
+) {
+  try {
+    //code here
+  } catch {
+    //catch errors
+  }
 }
 
-async function getRestaurantById(Id) {}
+//Tati
+async function getRestaurantById(Id) {
+  try {
+    const restaurant = await Restaurant.find(Id).exec();
+    return restaurant;
+  } catch (err) {
+    console.log("Unable to find restaurant.", err);
+  }
+}
 
-async function updateRestaurantById(data, Id) {}
+//Muhammed
+async function updateRestaurantById(data, Id) {
+  try {
+    await Restaurant.findByIdAndUpdate(Id, data);
+    const restaurant = await data.name;
+    console.log(restaurant);
+    return restaurant;
+  } catch (err) {
+    console.log("Unable to update restaurant.", err);
+  }
+}
 
-async function deleteRestaurantById(Id) {}
+//Muhammed
+async function deleteRestaurantById(Id) {
+  try {
+    // const deletedRestaurant = await find;
+    const deletedRestaurant = await Restaurant.findByIdAndRemove(Id).exec();
+    console.log(`${deletedRestaurant.name} was deleted successfully.`);
+    return deletedRestaurant;
+  } catch (err) {
+    console.log("Unable to delete restaurant.", err);
+  }
+}
 
 module.exports = {
   initialize,
@@ -46,4 +79,6 @@ module.exports = {
   getRestaurantById,
   updateRestaurantById,
   deleteRestaurantById,
+  database,
+  Restaurant,
 };
