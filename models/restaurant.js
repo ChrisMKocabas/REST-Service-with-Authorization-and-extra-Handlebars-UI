@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 const RestaurantSchema = new Schema({
   address: {
     building: String,
-    coord: [{ Number }],
+    coord: [Number],
     street: String,
     zipcode: String,
   },
@@ -16,4 +16,3 @@ const RestaurantSchema = new Schema({
   restaurant_id: String,
 });
 module.exports = mongoose.model("Restaurant", RestaurantSchema, "restaurants");
-
