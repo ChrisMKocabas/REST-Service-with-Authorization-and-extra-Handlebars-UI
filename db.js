@@ -46,7 +46,7 @@ async function getAllRestaurants(
     try {
       //all restaurants fitered by specific borough provided
       // 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
-      const restaurantsByBorough = await Restaurant.find(borough).sort({restaurant_id: -1 }).skip(page).limit(+perPage).exec()
+      const restaurantsByBorough = await Restaurant.find({borough}).sort({restaurant_id: -1 }).skip(page).limit(+perPage).exec()
       return restaurantsByBorough;
     } catch (err) {
       console.log("Required parameters missing.", err);
