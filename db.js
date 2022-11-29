@@ -31,15 +31,32 @@ async function getAllRestaurants(
   borough = /^(?!\s*$).+/
   /*borough will match all entries and bring all, if no borough specified*/
 ) {
-  try {
-    //code here
-  } catch {
-    //catch errors
+  
+  //if borough not provided
+  if(borough = "") {
+
+    try {
+      // all restaurants 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
+      const restaurantsById = await Restaurant.find(Id).sort({restaurant_id: -1 }).skip(page).limit(+perPage).exec()
+      return restaurantsById;
+    } catch (err) {
+      console.log("Required parameters missing.", err);
+    }
+  } else {
+    try {
+      //all restaurants fitered by specific borough provided
+      // 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
+      const restaurantsByBorough = await Restaurant.find(borough).sort({restaurant_id: -1 }).skip(page).limit(+perPage).exec()
+      return restaurantsByBorough;
+    } catch (err) {
+      console.log("Required parameters missing.", err);
+    }
   }
 }
 
 //Tati
 async function getRestaurantById(Id) {
+
   try {
     const restaurant = await Restaurant.find(Id).exec();
     return restaurant;
