@@ -11,7 +11,12 @@ Student IDs: N01475765 N01490818 Date: 11-29-2022
 ***/
 
 var mongoose = require("mongoose");
-var database = require("./config/database");
+//var database = require("./config/database");
+
+//import configuration
+require("dotenv").config();
+const database = { url: process.env.url}
+
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
 
@@ -93,6 +98,7 @@ async function getAllRestaurants(
 async function getRestaurantById(Id) {
   try {
     const restaurant = await Restaurant.findById(Id).lean().exec();
+    console.log(restaurant)
     return restaurant;
   } catch (err) {
     console.log("Unable to find restaurant.", err);

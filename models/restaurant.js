@@ -23,7 +23,11 @@ const RestaurantSchema = new Schema({
   },
   borough: String,
   cuisine: String,
-  grades: [{ type: { date: Date, grade: String, score: Number } }],
+  grades: [{
+    date: Date,
+    grade: String,
+    score: Number
+  }],
   name: String,
   restaurant_id: String,
 });

@@ -13,6 +13,7 @@ Student IDs: N01475765 N01490818 Date: 11-29-2022
 var express = require("express");
 var mongoose = require("mongoose");
 var app = express();
+const helper = require("helpers");
 
 // //connect to database
 var db = require("./db");
@@ -42,6 +43,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" })); // parse applica
 const HBS = exphbs.create({
   extname: ".hbs",
   // custom helpers
+  helpers: helper,
   helpers: {
     strong: function (options) {
       return "<strong>" + options.fn(this) + "</strong>";

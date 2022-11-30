@@ -24,13 +24,11 @@
           {{this.address.street}}
           {{this.address.zipcode}}
         </td>
-        <td>
-          {{#each this.grades}}
-            {{#each this}}
-              {{date}}
-              {{grade}}
-              {{score}}
-            {{/each}}<br />
+        <td colspan="2">
+          {{#each grades}}
+          <p>{{score}}, {{grade}}</p>
+          {{!-- <p>{{date}}</p> --}}
+         
           {{/each}}
         </td>
         {{!-- <td>{{this.publishedDate.$date}}</td> --}}

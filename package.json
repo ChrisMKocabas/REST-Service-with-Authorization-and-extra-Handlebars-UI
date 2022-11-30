@@ -16,11 +16,11 @@
     "express-validator": "^6.14.2",
     "fs": "^0.0.1-security",
     "handlebars": "^4.7.7",
+    "helpers": "^0.0.6",
     "mongodb": "^4.12.1",
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChrisMKocabas/AntiVMWebP.git"
@@ -29,5 +29,6 @@
     "url": "https://github.com/ChrisMKocabas/AntiVMWebP/issues"
   },
   "homepage": "https://github.com/ChrisMKocabas/AntiVMWebP#readme",
+  "devDependencies": {},
   "description": ""
 }
