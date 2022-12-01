@@ -216,6 +216,17 @@ router
     })();
   });
 
+router.route("/allData").get((req, res) => {
+  db.Restaurant.find((err, restaurants) => {
+    // if there is an error retrieving, send the error otherwise send data
+    if (err) res.send(err);
+    console.log(restaurants);
+    res.render("get-all", { data: restaurants });
+  })
+    .lean()
+    .limit(10);
+});
+
 //Connect to DB and Start Server
 async function startServer() {
   try {

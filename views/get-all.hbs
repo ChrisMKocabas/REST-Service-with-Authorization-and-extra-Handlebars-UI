@@ -1,6 +1,4 @@
-<div
-  style="margin: auto;align-self:center;text-align:left;width:400px;padding:16px;"
->
+<div style="margin: auto;align-self:center;text-align:left;padding:16px;">
   <table
     border="1"
     ,style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
@@ -26,11 +24,13 @@
         </td>
         <td>
           {{#each this.grades}}
-            {{#each this}}
-              {{date}}
-              {{grade}}
-              {{score}}
-            {{/each}}<br />
+            {{#this}}
+              <span>
+                {{date}}
+                {{grade}}
+                {{score}}
+              </span></br>
+            {{/this}}
           {{/each}}
         </td>
         {{!-- <td>{{this.publishedDate.$date}}</td> --}}

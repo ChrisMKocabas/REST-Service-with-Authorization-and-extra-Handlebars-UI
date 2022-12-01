@@ -11,7 +11,9 @@ Student IDs: N01475765 N01490818 Date: 11-29-2022
 ***/
 
 var mongoose = require("mongoose");
-var database = require("./config/database");
+// var database = require("./config/database");
+require("dotenv").config();
+const database = { url: process.env.url };
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
 
@@ -19,6 +21,7 @@ var Restaurant = require("./models/restaurant");
 const initialize = async function initialize(db) {
   try {
     console.log("Connecting to the database...");
+    console.log(database);
     await mongoose.connect(db.url);
     console.log("Connection established.");
     var Restaurant = require("./models/restaurant");
@@ -58,7 +61,7 @@ async function getAllRestaurants(
         // all restaurants 1) sorted by restaurant_id, 2) by indicated page, 3) indicated limit PerPage
         const restaurantsById = await Restaurant.find()
           .lean()
-          .sort({ restaurant_id: -1 })
+          .sort({ restaurant_id: +1 })
           .skip(page)
           .limit(+perPage)
           .exec();
