@@ -16,6 +16,7 @@ require("dotenv").config();
 const database = { url: process.env.url };
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
+// const user = require("./model/user");
 const user = { user: process.env.user };
 const password = { password: process.env.password };
 

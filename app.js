@@ -88,7 +88,7 @@ router.get("/", (req, res) => res.render("index", { name: "" }));
 
 */
 
-
+//WEB FORM ROUTE - render a webpage to login
 router.route("/login").get((req, res) => {
   res.render("login");
 });
@@ -187,11 +187,27 @@ router.route("/api/restaurants/").get((req, res) => {
 */
 
 
+//API ROUTE - login to confirm authorized users and give access to routes
 router
   .route("/login")
   .post((req, res) => {
+    (async function () {
+      try {
+        const { user, password } = req.body;
+        const username = await user.findOne({user});
 
-  });
+        if (username && (await bcrypt.compare(password, user.password))) {
+          
+        } else {
+          res.render("error", {
+            message: "User details incorrect.") 
+          
+        };
+      } catch (err) {
+          console.log(err);
+        }
+      })();
+    })
 
 
 
