@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <form
+  style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
+  method="GET"
+  action="/login"
+  enctype="x-www-form-urlencoded"
+  onsubmit="encryptLogin()"
+>
+
+  <div
+    style="margin:1rem ;display:flex; flex-direction:row; justify-content:space-around"
+  >
+    <div>
+      <label for="user">Username</label>
+      <input
+        id="user"
+        type="string"
+        name="user"
+        value=""
+      /><br />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="string"
+        name="password"
+        value=""
+      /><br />
+    </div>
+  <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

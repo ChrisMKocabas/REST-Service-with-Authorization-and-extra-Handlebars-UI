@@ -16,6 +16,8 @@ require("dotenv").config();
 const database = { url: process.env.url };
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
+const user = { user: process.env.user };
+const password = { password: process.env.password };
 
 //Muhammed
 const initialize = async function initialize(db) {

@@ -30,6 +30,8 @@ var app = express();
 //import fs
 const fs = require("fs");
 
+
+
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
@@ -76,6 +78,7 @@ app.use("/", router);
 
 router.use(cors({ origin: "*" }));
 
+
 // root route
 router.get("/", (req, res) => res.render("index", { name: "" }));
 
@@ -84,6 +87,12 @@ router.get("/", (req, res) => res.render("index", { name: "" }));
 ----- FRONT END ROUTES START -----
 
 */
+
+
+router.route("/login").get((req, res) => {
+  res.render("login");
+});
+
 
 //WEB FORM ROUTE - render a web page with handlebars to add restaurant -> form submit calls /api/restaurantsadd
 router.route("/api/add-restaurant").get((req, res) => {
@@ -176,6 +185,15 @@ router.route("/api/restaurants/").get((req, res) => {
 ----- FRONT END ROUTES END -----
 
 */
+
+
+router
+  .route("/login")
+  .post((req, res) => {
+
+  });
+
+
 
 //API ROUTE - Get all restaurants by page, perPage and optionally borough
 router
@@ -345,6 +363,7 @@ router
     // res.render("error", { message: err });
   })
 
+  
   // API ROUTE  - SENDS A RESPONSE AFTER FINDING AND DELETING RESTAURANT BY ID
   .delete((req, res) => {
     const id = req.params.id;

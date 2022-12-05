@@ -24,10 +24,24 @@
 
 
       </script>
-    <div class="landing-container">
-      <h1 class="landing-header">Welcome to the New York Restaurant Registry: </h1>
+      <h1 class="landing-header">Welcome to the New York Restaurant Registry: </h1><br /><br />
+      <form>
+        <div>
+          <label for="_id">ID</label>
+          <input
+            id="_id"
+            type="text"
+            name="_id"
+            placeholder="Please enter restaurant ID"
+            style="width:20em"
+            value=""
+          /><br /><br />
+        </div>
+      </div>
+    </form>
+    <h3 class="landing-subheader" style="align-self:center;">Please select your action below: </h3>
 
-      <h3 class="landing-subheader">Please select your action below: </h3>
+    <div class="landing-container">
 
       <div class="actions-container">
         <a  class="page-anchor" onclick="redirectOneRest()">Find Restaurant By
@@ -41,20 +55,7 @@
           Restaurant:</a>
       </div>
     </div>
-    <form>
-        <div>
-          <label for="_id">ID</label>
-          <input
-            id="_id"
-            type="text"
-            name="_id"
-            placeholder="Please enter restaurant ID"
-            style="width:20em"
-            value=""
-          /><br />
-        </div>
-      </div>
-    </form>
+
   </body>
 </html>
 
