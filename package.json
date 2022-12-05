@@ -1,11 +1,12 @@
 {
   "name": "asn4-mongo-muhammedkocabas",
   "version": "1.0.0",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tati Trofimchuk",
+  "author": "Muhammed Kocabas",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,20 +16,12 @@
     "express-router": "^0.0.1",
     "express-validator": "^6.14.2",
     "fs": "^0.0.1-security",
-    "handlebars": "^4.7.7",
-    "helpers": "^0.0.6",
+    "method-override": "^3.0.0",
     "mongodb": "^4.12.1",
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ChrisMKocabas/AntiVMWebP.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ChrisMKocabas/AntiVMWebP/issues"
-  },
-  "homepage": "https://github.com/ChrisMKocabas/AntiVMWebP#readme",
-  "devDependencies": {},
-  "description": ""
+  "devDependencies": {
+    "handlebars": "^4.7.7"
+  }
 }

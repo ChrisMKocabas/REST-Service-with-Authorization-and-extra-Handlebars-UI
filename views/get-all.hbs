@@ -1,11 +1,12 @@
 <div
-  style="margin: auto;align-self:center;text-align:left;width:400px;padding:16px;"
+  style="width:100%;height:100%; ;align-self:center;text-align:left;padding:16px;display: flex;justify-content:center; align-items:flex-start"
 >
   <table
     border="1"
-    ,style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
+    ,style="width:100%;height:100%;align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
   >
     <th>ID</th>
+    <th>Restaurant ID</th>
     <th>Name</th>
     <th>Cuisine</th>
     <th>Borough</th>
@@ -14,6 +15,7 @@
 
     {{#each data}}
       <tr>
+        <td>{{this._id}}</td>
         <td>{{this.restaurant_id}}</td>
         <td>{{this.name}}</td>
         <td>{{this.cuisine}}</td>
@@ -24,11 +26,17 @@
           {{this.address.street}}
           {{this.address.zipcode}}
         </td>
-        <td colspan="2">
-          {{#each grades}}
-          <p>{{score}}, {{grade}}</p>
-          {{!-- <p>{{date}}</p> --}}
-         
+        <td>
+          {{#each this.grades}}
+            {{#this}}
+              <table border="1">
+                <tr>
+                  <td>Date: {{date}}</td>
+                  <td>Grade: {{grade}}</td>
+                  <td>Score: {{score}}</td>
+                </tr>
+              </table>
+            {{/this}}
           {{/each}}
         </td>
         {{!-- <td>{{this.publishedDate.$date}}</td> --}}

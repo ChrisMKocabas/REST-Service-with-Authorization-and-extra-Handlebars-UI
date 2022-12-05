@@ -1,33 +1,100 @@
-  <p>Add a new Restaurant:</p>
-  <div style="margin: auto;align-self:center;text-align:left;width:400px;border:1px dashed #6495de;padding:16px;">
-    <form style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"method="post" action="/api/restaurants" enctype="x-www-form-urlencoded">
-      <label for="restaurant_id">Restaurant ID</label>
-      <input id="restaurant_id" type="text" name="restaurant_id" /><br />
-      <label for="name">Name</label>
-      <input id="name" type="text" name="name" /><br />
-      <label for="cuisine">Cuisine</label>
-      <input id="cuisine" type="text" name="cuisine" /><br />
-      <label for="borough">Borough</label>
-      <input id="borough" type="text" name="borough" /><br />
+<html>
+  <body>
+    <p>Add a new Restaurant:</p>
+    <div
+      style="margin: auto;align-self:center;text-align:left;width:400px;border:1px dashed #6495de;padding:16px;"
+    >
+      <form
+        style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
+        method="post"
+        action="/api/restaurantsadd"
+        enctype="x-www-form-urlencoded"
+      >
+        <label for="restaurant_id">Restaurant ID</label>
+        <input
+          id="restaurant_id"
+          type="text"
+          name="restaurant_id"
+          required
+          placeholder="required"
+        /><br />
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          required
+          placeholder="required"
+        /><br />
+        <label for="cuisine">Cuisine</label>
+        <input
+          id="cuisine"
+          type="text"
+          name="cuisine"
+          required
+          placeholder="required"
+        /><br />
+        <label for="borough">Borough</label>
+        <input
+          id="borough"
+          type="text"
+          name="borough"
+          required
+          placeholder="required"
+        /><br />
 
-      <label for="building">Building</label>
-      <input id="building" type="text" name="building"/><br />
-      <label for="coordx">Coordinates X</label>
-      <input id="coordx" type="text" name="coordx"/><br />
-      <label for="coordy">Coordinates y</label>
-      <input id="coordy" type="text" name="coordy"/><br />
-      <label for="zipcode">Zipcode</label>
-      <input id="zipcode" type="text" name="zipcode"/><br />
+        <label for="building">Building</label>
+        <input
+          id="building"
+          type="text"
+          name="building"
+          placeholder="optional"
+        /><br />
+        <label for="coordx">Coordinates X</label>
+        <input
+          id="coordx"
+          type="text"
+          name="coordx"
+          placeholder="optional: Latitude"
+        /><br />
+        <label for="coordy">Coordinates y</label>
+        <input
+          id="coordy"
+          type="text"
+          name="coordy"
+          placeholder="optional: Longtitude"
+        /><br />
+        <label for="street">Street</label>
+        <input
+          id="street"
+          type="text"
+          name="street"
+          placeholder="optional"
+        /><br />
+        <label for="zipcode">Zipcode</label>
+        <input
+          id="zipcode"
+          type="text"
+          name="zipcode"
+          placeholder="optional: XXXXX"
+        /><br />
 
+        <label for="date">Date</label>
+        <input
+          id="date"
+          class="date"
+          type="text"
+          name="date"
+          onfocus="dttonfocus()"
+          placeholder="YYYY-MM-DD"
+        /><br />
+        <label for="grade">Grade</label>
+        <input id="grade" type="text" name="grade" placeholder="ex: Ad" /><br />
+        <label for="score">Score</label>
+        <input id="score" type="text" name="score" placeholder="ex: 10" /><br />
 
-      <label for="date">Date</label>
-      <input id="date" type="text" name="date"/><br />
-      <label for="grade">Grade</label>
-      <input id="grade" type="text" name="grade"/><br />
-      <label for="score">Score</label>
-      <input id="score" type="text" name="score"/><br />
-
-      <input type="submit" value="Submit" />
-    </form>
-  </div>
-</body>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

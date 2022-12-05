@@ -13,8 +13,7 @@ Student IDs: N01475765 N01490818 Date: 11-29-2022
 // load mongoose since we need it to define a model
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-
-const RestaurantSchema = new Schema({
+RestaurantSchema = new Schema({
   address: {
     building: String,
     coord: [Number],
@@ -23,11 +22,7 @@ const RestaurantSchema = new Schema({
   },
   borough: String,
   cuisine: String,
-  grades: [{
-    date: Date,
-    grade: String,
-    score: Number
-  }],
+  grades: [{ type: { date: Date, grade: String, score: Number } }],
   name: String,
   restaurant_id: String,
 });

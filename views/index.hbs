@@ -1,1 +1,61 @@
-<h1>Welcome {{name}}</h1>
+<html>
+  <body>
+      <script>
+        function redirectOneRest() {
+
+         
+          var idNo = document.getElementById("_id").value;
+          link="/api/find-restaurant/"+idNo 
+          window.location.assign(link);
+          
+        }
+
+              function redirectUpdateRest() {
+          var idNo = document.getElementById("_id").value;
+          link="/api/update-restaurant/"+idNo
+          window.location.assign(link);
+        }
+
+              function redirectDeleteRest() {
+          var idNo = document.getElementById("_id").value;
+          link="/api/delete-restaurant/"+idNo
+          window.location.assign(link);
+        }
+
+
+      </script>
+    <div class="landing-container">
+      <h1 class="landing-header">Welcome to the New York Restaurant Registry: </h1>
+
+      <h3 class="landing-subheader">Please select your action below: </h3>
+
+      <div class="actions-container">
+        <a  class="page-anchor" onclick="redirectOneRest()">Find Restaurant By
+          ID:</a>
+        <a class="page-anchor" href="/api/restaurants/all">Explore Restaurant
+          Registry:</a>
+        <a class="page-anchor" href="/api/add-restaurant">Add a New Restaurant:</a>
+        <a class="page-anchor"  onclick="redirectUpdateRest()">Update an
+          Existing Restaurant:</a>
+        <a class="page-anchor" onclick="redirectDeleteRest()">Delete a
+          Restaurant:</a>
+      </div>
+    </div>
+    <form>
+        <div>
+          <label for="_id">ID</label>
+          <input
+            id="_id"
+            type="text"
+            name="_id"
+            placeholder="Please enter restaurant ID"
+            style="width:20em"
+            value=""
+          /><br />
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
+
+

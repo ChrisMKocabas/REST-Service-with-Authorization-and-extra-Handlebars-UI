@@ -9,7 +9,3 @@
 Student IDs: N01475765 N01490818 Date: 11-29-2022
 ******************************************************************************
 ***/
-
-module.exports = {
-  url: "mongodb+srv://netninja:Rocker47@cluster0.k5s3d7h.mongodb.net/sample_restaurants",
-};
