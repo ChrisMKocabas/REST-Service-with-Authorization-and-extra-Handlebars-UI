@@ -13,7 +13,7 @@ Student IDs: N01475765 N01490818 Date: 11-29-2022
 var mongoose = require("mongoose");
 // var database = require("./config/database");
 require("dotenv").config();
-const database = { url: process.env.url };
+const database = { url: process.env.url1 };
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
 
