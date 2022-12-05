@@ -60,7 +60,7 @@ app.set("view engine", "hbs");
 // Initialize built-in middleware for urlencoding and json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/.netlify/functions/server", router); // path must route to lambda
+
 // set the static folder
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -75,7 +75,7 @@ router.use(express.static(path.join(__dirname, "public")));
 app.use("/", router);
 
 router.use(cors({ origin: "*" }));
-router.use("/.netlify/functions/server", router); // path must route to lambda
+
 // root route
 router.get("/", (req, res) => res.render("index", { name: "" }));
 
