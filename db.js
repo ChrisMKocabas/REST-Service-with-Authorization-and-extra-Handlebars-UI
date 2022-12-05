@@ -78,7 +78,7 @@ async function getAllRestaurants(
           borough: borough,
         })
           .lean()
-          .sort({ restaurant_id: -1 })
+          .sort({ restaurant_id: +1 })
           .skip(page)
           .limit(+perPage)
           .exec();
@@ -88,7 +88,7 @@ async function getAllRestaurants(
       }
     }
   } catch (err) {
-    console.log("there was a problem. Unable to get and restaurants", err);
+    console.log("there was a problem. Unable to get and restaurants");
   }
 }
 
@@ -98,16 +98,18 @@ async function getRestaurantById(Id) {
     const restaurant = await Restaurant.findById(Id).lean().exec();
     return restaurant;
   } catch (err) {
-    console.log("Unable to find restaurant.", err);
+    console.log("Unable to find restaurant.");
   }
 }
 
 //Muhammed
 async function updateRestaurantById(data, Id) {
   try {
-    await Restaurant.findByIdAndUpdate(Id, data);
-    const restaurant = await data.name;
-    console.log(restaurant);
+    let restaurant = await Restaurant.findByIdAndUpdate({ _id: Id }, data, {
+      new: true,
+    })
+      .lean()
+      .exec();
     return restaurant;
   } catch (err) {
     console.log("Unable to update restaurant.", err);

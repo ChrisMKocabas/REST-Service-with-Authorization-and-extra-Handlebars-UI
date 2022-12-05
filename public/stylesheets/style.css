@@ -38,10 +38,14 @@ body {
 }
 
 .container {
-  justify-content: center;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
-  text-justify: center;
+  text-justify: start;
 }
 
 .header {
@@ -58,4 +62,36 @@ body {
   background-color: azure;
   border: 1px solid rgba(250, 128, 114, 0.281);
   width: 100%;
+}
+
+.landing-container {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.page-anchor {
+  display: block;
+  padding: 3rem;
+  margin: 2rem 6rem 2rem 6rem;
+  background-color: rgba(255, 228, 196, 0.487);
+  border: 1px solid rgba(255, 166, 0, 0.358);
+  color: 333;
+  font-weight: bold;
+  text-decoration: none;
+  width: fit-content;
+  height: fit-content;
+}
+
+.landing-header,
+.landing-subheader {
+  margin: 1rem;
 }
