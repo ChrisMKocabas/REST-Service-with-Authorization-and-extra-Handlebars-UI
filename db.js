@@ -62,7 +62,7 @@ async function getAllRestaurants(
         const restaurantsById = await Restaurant.find()
           .lean()
           .sort({ restaurant_id: +1 })
-          .skip(page)
+          .skip(page * perPage)
           .limit(+perPage)
           .exec();
         return restaurantsById;
@@ -79,7 +79,7 @@ async function getAllRestaurants(
         })
           .lean()
           .sort({ restaurant_id: +1 })
-          .skip(page)
+          .skip(page * perPage)
           .limit(+perPage)
           .exec();
         return restaurantsByBorough;

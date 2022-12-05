@@ -145,7 +145,7 @@ router.route("/api/delete-restaurant/:id").get((req, res) => {
 });
 
 //WEB ROUTE - render a web form to filter restaurants by page, perpage and borough -> form submit calls itself
-router.route("/api/restaurants/all").get((req, res) => {
+router.route("/api/restaurants/").get((req, res) => {
   const page = parseInt(req.body.page) || req.query.page || 1;
   const perPage = parseInt(req.body.perpage) || req.query.perpage || 5;
   const borough = req.query.borough || req.query.borough || "";
