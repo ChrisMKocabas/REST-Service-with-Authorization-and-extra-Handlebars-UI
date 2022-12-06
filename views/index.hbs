@@ -24,7 +24,12 @@
 
 
       </script>
-      <h1 class="landing-header">Welcome to the New York Restaurant Registry: </h1><br /><br />
+      <h1 class="landing-header">Welcome to the New York Restaurant Registry </h1><br /><br />
+      <div class="actions-container">
+        <a class="page-anchor" href="/api/restaurants">Explore Restaurant
+          Registry</a>
+        <a class="page-anchor" href="/api/add-restaurant">Add a New Restaurant</a>
+      </div><br /><br />
       <form>
         <div>
           <label for="_id">ID</label>
@@ -33,28 +38,24 @@
             type="text"
             name="_id"
             placeholder="Please enter restaurant ID"
-            style="width:20em"
+            style="width:20em; height:3em"
             value=""
-          /><br /><br />
+          /><br />
         </div>
       </div>
     </form>
-    <h3 class="landing-subheader" style="align-self:center;">Please select your action below: </h3>
+    <h4 class="landing-subheader" style="align-self:center;">For the ID entered, select your action below: </h4>
 
-    <div class="landing-container">
+    
 
       <div class="actions-container">
-        <a  class="page-anchor" onclick="redirectOneRest()">Find Restaurant By
-          ID:</a>
-        <a class="page-anchor" href="/api/restaurants">Explore Restaurant
-          Registry:</a>
-        <a class="page-anchor" href="/api/add-restaurant">Add a New Restaurant:</a>
-        <a class="page-anchor"  onclick="redirectUpdateRest()">Update an
-          Existing Restaurant:</a>
+        <a  class="page-anchor" onclick="redirectOneRest()">Find a Restaurant</a>
+        <a class="page-anchor"  onclick="redirectUpdateRest()">Update
+          Existing Restaurant</a>
         <a class="page-anchor" onclick="redirectDeleteRest()">Delete a
-          Restaurant:</a>
+          Restaurant</a>
       </div>
-    </div>
+    
 
   </body>
 </html>
