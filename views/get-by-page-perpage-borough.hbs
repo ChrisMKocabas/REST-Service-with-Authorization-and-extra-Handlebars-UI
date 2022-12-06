@@ -57,6 +57,7 @@
     <th>Borough</th>
     <th>Address</th>
     <th>Grades</th>
+    <th>View On Map</th>
 
     {{#each data}}
       <tr>
@@ -65,26 +66,55 @@
         <td>{{this.name}}</td>
         <td>{{this.cuisine}}</td>
         <td>{{this.borough}}</td>
+
         <td>
           {{this.address.building}}
-          {{#each this.address.coord}}{{/each}}
-          {{this.address.street}}
-          {{this.address.zipcode}}
+          -
+          {{this.address.street}}<br />
+          {{this.address.zipcode}}<br /><br />
+          {{#with this.address.coord}}
+            Coordinates:
+            <br />
+            Lat:<br />
+            {{0}}
+            <br />
+            Long:<br />
+            {{1}}{{/with}}
         </td>
-        <td>
+        <td style="vertical-align:center; ">
           {{#each this.grades}}
             {{#this}}
-              <table border="1">
-                <tr>
+              <table
+                border="0"
+                style="display:flex; justify-content:space-around ;"
+              >
+                <tr style="vertical-align:top;">
                   <td>Date: {{date}}</td>
                   <td>Grade: {{grade}}</td>
                   <td>Score: {{score}}</td>
-                </tr>
+                </tr><br />
               </table>
             {{/this}}
           {{/each}}
         </td>
-        {{!-- <td>{{this.publishedDate.$date}}</td> --}}
+        <td>
+          <div class="mapouter">
+            <div class="gmap_canvas">
+              <iframe
+                width="200"
+                height="200"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q={{this.name}}%20{{this.address.street}}%20{{this.borough}}&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              >
+              </iframe>
+              <br /><style
+              >.mapouter{position:relative;text-align:right;height:200px;width:200px;}</style><style
+              >.gmap_canvas
+                {overflow:hidden;background:none!important;height:200px;width:200px;}</style></div></div></td>{{!-- <td>{{this.publishedDate.$date}}</td> --}}
       </tr>
 
     {{/each}}
@@ -95,7 +125,7 @@
 <form
   style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
   method="GET"
-  action="/api/restaurants/all"
+  action="/api/restaurants/"
   enctype="x-www-form-urlencoded"
 >
   {{! <input type="hidden" name="_method" value="PUT" /> }}

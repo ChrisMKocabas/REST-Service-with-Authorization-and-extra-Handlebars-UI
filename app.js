@@ -159,7 +159,6 @@ router.route("/api/restaurants/all").get((req, res) => {
         perPage,
         borough
       );
-      console.log(filteredRestaurants);
       res.render("get-by-page-perpage-borough", {
         data: filteredRestaurants,
         details: { page, perPage, borough },
