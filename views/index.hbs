@@ -11,38 +11,35 @@
 
     </script>
 
-    <div class="landing-container">
-      <h1 class="landing-header">Welcome to the New York Restaurant Registry:
-      </h1>
+    <h1 class="landing-header">Welcome to the New York Restaurant Registry
+    </h1><br /><br />
 
-      <h3 class="landing-subheader">Please select your action below: </h3>
+    <div class="actions-container">
+      <a class="page-anchor" href="/api/restaurants/all">Explore Restaurant
+        Registry:</a>
+      <a class="page-anchor" href="/api/add-restaurant">Add a New Restaurant:</a></div><br
+    /><br />
 
-      <form>
-        <div>
-          <label for="_id">Restaurant ID: </label>
-          <input
-            id="_id"
-            type="text"
-            name="_id"
-            placeholder="Please enter restaurant ID"
-            style="width:20em"
-            value=""
-          /><br />
-        </div>
-
-      </form>
-
-      <div class="actions-container">
-        <a class="page-anchor" onclick="redirectOneRest()">Find Restaurant By
-          ID:</a>
-        <a class="page-anchor" href="/api/restaurants/all">Explore Restaurant
-          Registry:</a>
-        <a class="page-anchor" href="/api/add-restaurant">Add a New Restaurant:</a>
-        <a class="page-anchor" onclick="redirectUpdateRest()">Update an Existing
-          Restaurant:</a>
-        <a class="page-anchor" onclick="redirectDeleteRest()">Delete a
-          Restaurant:</a>
+    <form>
+      <div>
+        <label for="_id">Restaurant ID: </label>
+        <input
+          id="_id"
+          type="text"
+          name="_id"
+          placeholder="Please enter restaurant ID"
+          style="width:20em; height:3em"
+          value=""
+        /><br />
       </div>
+    </form>
+    <h4 class="landing-subheader" style="align-self:center;">For the ID entered,
+      select your action below:</h4>
+    <div class="actions-container">
+      <a class="page-anchor" onclick="redirectOneRest()">Find Restaurant By ID:</a>
+      <a class="page-anchor" onclick="redirectUpdateRest()">Update an Existing
+        Restaurant:</a>
+      <a class="page-anchor" onclick="redirectDeleteRest()">Delete a Restaurant:</a>
     </div>
 
   </body>
