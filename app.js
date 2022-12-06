@@ -105,7 +105,7 @@ router.route("/").get((req, res) => {
     res.render("index", { name: "" });
   } else {
     //trying to access without credentials
-    res.status(401).render("error", {
+    res.status(401).render("redirect-to-login", {
       message: "To view and edit, please login.",
     });
   }
