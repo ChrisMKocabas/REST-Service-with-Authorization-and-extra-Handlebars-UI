@@ -199,7 +199,7 @@ router.route("/api/restaurants/").get((req, res) => {
 */
 
 
-//API ROUTE - login to confirm authorized users and give access to routes
+//API ROUTE - login to confirm authorized user and create cookie-session
 router
   .route("/login")
   .post((req, res) => {
