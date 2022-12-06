@@ -30,6 +30,21 @@ var app = express();
 //import fs
 const fs = require("fs");
 
+//import crypto
+const crypto = require("crypto");
+//import and initialize cookie-session
+var cookieSession = require("cookie-session");
+app.use(
+  cookieSession({
+    name: "session",
+    //indicate secret key
+    keys: [process.env.KEY],
+    // Cookie Options
+    maxAge: 365 * 24 * 60 * 60 * 1000,
+  })
+);
+let Token;
+
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
@@ -76,18 +91,49 @@ app.use("/", router);
 
 router.use(cors({ origin: "*" }));
 
-// root route
-router.get("/", (req, res) => res.render("index", { name: "" }));
-
 /* 
 
 ----- FRONT END ROUTES START -----
 
 */
 
+//root route
+//WEB FORM ROUTE - render landing page with all operations
+router.route("/").get((req, res) => {
+  //only visible upon successful login with user and password
+  if (req.session.Token) {
+    res.render("index", { name: "" });
+  } else {
+    //trying to access without credentials
+    res.status(401).render("error", {
+      message: "To view and edit, please login.",
+    });
+  }
+});
+
+router.route("/").post((req, res) => {
+  if (req.session.Token) {
+    res.render("index", { name: "" });
+  } else {
+    res.render("error");
+  }
+});
+
+//WEB FORM ROUTE - render a webpage to login
+router.route("/login").get((req, res) => {
+  res.render("login");
+});
+
 //WEB FORM ROUTE - render a web page with handlebars to add restaurant -> form submit calls /api/restaurantsadd
 router.route("/api/add-restaurant").get((req, res) => {
-  res.render("add-restaurant");
+  if (req.session.Token) {
+    res.render("add-restaurant");
+  } else {
+    //trying to access without credentials
+    res.status(401).render("error", {
+      message: "To view and edit, please login.",
+    });
+  }
 });
 
 //WEB ROUTE - render a web page with found restaurant
@@ -100,10 +146,18 @@ router.route("/api/find-restaurant/:id").get((req, res) => {
         .lean()
         .exec();
       console.log(filteredRestaurants);
-      res.render("get-all", {
-        data: [filteredRestaurants],
-        specialmessage: "Restaurant found:",
-      });
+      // check if user is authorized
+      if (req.session.Token) {
+        res.render("get-all", {
+          data: [filteredRestaurants],
+          specialmessage: "Restaurant found:",
+        });
+      } else {
+        //trying to access without credentials
+        res.status(401).render("error", {
+          message: "To view and edit, please login.",
+        });
+      }
       // res.send(filteredRestaurants);
     } catch (err) {
       res.render("error", {
@@ -119,11 +173,20 @@ router.route("/api/update-restaurant/:id").get((req, res) => {
     try {
       let rest = await db.Restaurant.findById(req.params.id).lean().exec();
       console.log(rest);
-      if (rest._id == req.params.id)
-        res.render("update-restaurant", {
-          data: req.params.id,
-          fields: rest,
-        });
+      if (rest._id == req.params.id) {
+        // check if user is authorized
+        if (req.session.Token) {
+          res.render("update-restaurant", {
+            data: req.params.id,
+            fields: rest,
+          });
+        } else {
+          //trying to access without credentials
+          res.status(401).render("error", {
+            message: "To view and edit, please login.",
+          });
+        }
+      }
     } catch (err) {
       res.render("error", { message: "Please check input ID and try again!" });
     }
@@ -136,11 +199,20 @@ router.route("/api/delete-restaurant/:id").get((req, res) => {
     try {
       let rest = await db.Restaurant.findById(req.params.id).lean().exec();
       console.log(rest);
-      if (rest._id == req.params.id)
-        res.render("delete-restaurant", {
-          data: req.params.id,
-          fields: rest,
-        });
+      if (rest._id == req.params.id) {
+        // check if user is authorized
+        if (req.session.Token) {
+          res.render("delete-restaurant", {
+            data: req.params.id,
+            fields: rest,
+          });
+        } else {
+          //trying to access without credentials
+          res.status(401).render("error", {
+            message: "To view and edit, please login.",
+          });
+        }
+      }
     } catch (err) {
       res.render("error", { message: "Please check input ID and try again!" });
     }
@@ -162,10 +234,18 @@ router.route("/api/restaurants/all").get((req, res) => {
         perPage,
         borough
       );
-      res.render("get-by-page-perpage-borough", {
-        data: filteredRestaurants,
-        details: { page, perPage, borough },
-      });
+      // check if user is authorized
+      if (req.session.Token) {
+        res.render("get-by-page-perpage-borough", {
+          data: filteredRestaurants,
+          details: { page, perPage, borough },
+        });
+      } else {
+        //trying to access without credentials
+        res.status(401).render("error", {
+          message: "To view and edit, please login.",
+        });
+      }
       // res.send(filteredRestaurants);
     } catch (err) {
       console.log(err);
@@ -178,6 +258,31 @@ router.route("/api/restaurants/all").get((req, res) => {
 ----- FRONT END ROUTES END -----
 
 */
+
+//API ROUTE - login to confirm authorized user and create cookie-session
+router.route("/login").post(async (req, res) => {
+  try {
+    let { user, password } = req.body;
+    //console.log(`${user} ${password}`)
+
+    if (process.env.user == user && process.env.password == password) {
+      //generate random token
+      const uuid = await crypto.randomUUID();
+      //update defaul token to this newly generated one
+      let Token = uuid;
+      //add token to session
+      req.session.Token = uuid;
+      res.redirect("/");
+      //
+    } else {
+      res.status(403).render("error", {
+        message: "User details incorrect.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //API ROUTE - Get all restaurants by page, perPage and optionally borough
 router
@@ -193,7 +298,7 @@ router
           perPage,
           borough
         );
-        res.send(filteredRestaurants);
+        res.status(201).send(filteredRestaurants);
       } catch (err) {
         console.log(err);
       }
@@ -242,7 +347,7 @@ router
       try {
         let newRestaurant = await db.addNewRestaurant(data);
 
-        res.send(newRestaurant);
+        res.status(201).send(newRestaurant);
       } catch (err) {
         console.log(err);
       }
@@ -252,7 +357,7 @@ router
   //WEB ROUTE - RENDERS RESPONSE - Update a restaurant - called by update-restaurant.hbs
   .put((req, res) => {
     let id = req.body.id;
-    console.log(typeof req.body.date);
+
     //populate all fields of new restaurant
 
     let gradesArray;
@@ -450,7 +555,7 @@ router
 
 // IF ALL FAILS RENDER AN ERROR RESPONSE
 router.all("/*", (req, res) => {
-  res.render("error", {
+  res.status(500).render("error", {
     message: "Please check your input and try again.",
   });
 });
