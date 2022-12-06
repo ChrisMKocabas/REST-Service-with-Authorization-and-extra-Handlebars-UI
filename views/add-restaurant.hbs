@@ -89,10 +89,15 @@
           placeholder="YYYY-MM-DD"
         /><br />
         <label for="grade">Grade</label>
-        <input id="grade" type="text" name="grade" placeholder="ex: Ad" /><br />
+        <input id="grade" type="text" name="grade" placeholder="ex: A" /><br />
         <label for="score">Score</label>
         <input id="score" type="text" name="score" placeholder="ex: 10" /><br />
-
+        <div
+          id="extra-fields-container"
+          style="align-self:stretch;flex-direction:column; display: flex;justify-content:space-around;"
+        ></div>
+        <button type="button" id="addGrade" onclick="extraFields()">Add Grade</button><br
+        />
         <input type="submit" value="Submit" />
       </form>
     </div>

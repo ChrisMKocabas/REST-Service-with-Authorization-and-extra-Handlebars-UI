@@ -199,7 +199,27 @@ router
 
   //API ROUTE - Create new restaurant and SEND RESPONSE
   .post((req, res) => {
-    console.log(req.body);
+    //first populate grades array depending on single or multi entry
+    let gradesArray;
+
+    if (typeof req.body.date == "object") {
+      gradesArray = req.body.date.map(function (val, index) {
+        return {
+          date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+          grade: req.body.grade[index] || "N/A",
+          score: req.body.score[index] || 0,
+        };
+      });
+    } else {
+      gradesArray = [req.body.date].map(function (val, index) {
+        return {
+          date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+          grade: req.body.grade[index] || "N/A",
+          score: req.body.score[index] || 0,
+        };
+      });
+    }
+
     //populate all fields of new restaurant
     let data = {
       restaurant_id: req.body.restaurant_id,
@@ -212,19 +232,13 @@ router
         street: req.body.street,
         zipcode: req.body.zipcode,
       },
-      grades: [
-        {
-          date: req.body.date,
-          grade: req.body.grade,
-          score: req.body.score,
-        },
-      ],
+      grades: gradesArray,
     };
 
     (async function () {
       try {
         let newRestaurant = await db.addNewRestaurant(data);
-        // res.render("get-all", { data: newRestaurant });
+
         res.send(newRestaurant);
       } catch (err) {
         console.log(err);
@@ -235,17 +249,27 @@ router
   //WEB ROUTE - RENDERS RESPONSE - Update a restaurant - called by update-restaurant.hbs
   .put((req, res) => {
     let id = req.body.id;
-
+    console.log(typeof req.body.date);
     //populate all fields of new restaurant
-    let gradesArray = req.body.date.map(function (val, index) {
-      return {
-        date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
-        grade: req.body.grade[index] || "N/A",
-        score: req.body.score[index] || 0,
-      };
-    });
 
-    console.log(gradesArray);
+    let gradesArray;
+    if (typeof req.body.date == "object") {
+      gradesArray = req.body.date.map(function (val, index) {
+        return {
+          date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+          grade: req.body.grade[index] || "N/A",
+          score: req.body.score[index] || 0,
+        };
+      });
+    } else {
+      gradesArray = [req.body.date].map(function (val, index) {
+        return {
+          date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+          grade: req.body.grade[index] || "N/A",
+          score: req.body.score[index] || 0,
+        };
+      });
+    }
 
     let data = {
       restaurant_id: req.body.restaurant_id,
@@ -292,7 +316,27 @@ router
 
 //WEB ROUTE - RENDER - Create a new restaurant and render webpage response -> called by /api/add-restaurant
 router.route("/api/restaurantsadd").post((req, res) => {
-  console.log(req.body);
+  //first populate grades array depending on single or multi entry
+  let gradesArray;
+
+  if (typeof req.body.date == "object") {
+    gradesArray = req.body.date.map(function (val, index) {
+      return {
+        date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+        grade: req.body.grade[index] || "N/A",
+        score: req.body.score[index] || 0,
+      };
+    });
+  } else {
+    gradesArray = [req.body.date].map(function (val, index) {
+      return {
+        date: val || new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+        grade: req.body.grade[index] || "N/A",
+        score: req.body.score[index] || 0,
+      };
+    });
+  }
+
   //populate all fields of new restaurant
   let data = {
     restaurant_id: req.body.restaurant_id,
@@ -305,20 +349,14 @@ router.route("/api/restaurantsadd").post((req, res) => {
       street: req.body.street,
       zipcode: req.body.zipcode,
     },
-    grades: [
-      {
-        date: req.body.date,
-        grade: req.body.grade,
-        score: req.body.score,
-      },
-    ],
+    grades: gradesArray,
   };
 
   (async function () {
     try {
       let newRestaurant = await db.addNewRestaurant(data);
+      console.log("Create by form");
       res.render("get-all", { data: newRestaurant });
-      // res.send(newRestaurant);
     } catch (err) {
       console.log(err);
     }
