@@ -30,7 +30,19 @@ var app = express();
 //import fs
 const fs = require("fs");
 
-const bcrypt = require('bcrypt');
+//import and initialize cookie-session
+var cookieSession = require("cookie-session");
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [process.env.KEY],
+    // Cookie Options
+    maxAge: 365 * 24 * 60 * 60 * 1000, 
+  })
+);
+
+// const bcrypt = require('bcrypt');
+// const salt =10;
 
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
@@ -187,12 +199,36 @@ router.route("/api/restaurants/").get((req, res) => {
 */
 
 
+
+
+
 //API ROUTE - login to confirm authorized users and give access to routes
 router
+  .route("/login")
+  .post((req, res) => {
+    (async function () {
+      try {
+        const { user, password } = req.body;
+    
+            await user.findOne({
+              where: {
+                user: req.body.userlogin
+              }
+            })
+            if (user != userlogin && password != passwordlogin){
+              res.render("error", {
+                  message: "User details incorrect."}) 
+            } else {
+
+            }
+      } catch {
+
+      }
+    })
+  })
   // .route("/login")
   // .post((req, res) => {
-  //   (async function () {
-  //     try {
+  //   
   //       const { user, password } = req.body;
   //       const username = await user.findOne({user});
 
@@ -208,36 +244,36 @@ router
   //       }
   //     })();
   //   })
-  .post('/login', (req, res, next) => {
+  // .post('/login', (req, res, next) => {
 
-    (async function () {
+  //   (async function () {
       
-      const { user, password } = req.body;
+  //     const { user, password } = req.body;
     
-      await user.findOne({
-        where: {
-          user: req.body.user
-        }
-      })
-      .then(user => {
-        if(!user) {
-          return next({ status: 401 })
-        }
-        else {
-          bcrypt.compare(req.body.password, user.password, (error, result) => {
-            if(result) {
-              res.send(user)
-            }
-            else {
-              console.log(error)
-              return next({ status: 401 })
-            }
-          })
-        }
-      })
-      .catch(error => next(error));
-    })
-  })
+  //     await user.findOne({
+  //       where: {
+  //         user: req.body.user
+  //       }
+  //     })
+  //     .then(user => {
+  //       if(!user) {
+  //         return next({ status: 401 })
+  //       }
+  //       else {
+  //         bcrypt.compare(req.body.password, user.password, (error, result) => {
+  //           if(result) {
+  //             res.send(user)
+  //           }
+  //           else {
+  //             console.log(error)
+  //             return next({ status: 401 })
+  //           }
+  //         })
+  //       }
+  //     })
+  //     .catch(error => next(error));
+  //   })
+  // })
 
 
 //API ROUTE - Get all restaurants by page, perPage and optionally borough

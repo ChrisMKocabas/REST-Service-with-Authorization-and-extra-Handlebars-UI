@@ -17,8 +17,8 @@ const database = { url: process.env.url };
 const restaurant = require("./models/restaurant");
 var Restaurant = require("./models/restaurant");
 // const user = require("./model/user");
-const user = { user: process.env.user };
-const password = { password: process.env.password };
+const loginuser = { user: process.env.user };
+const loginpassword = { password: process.env.password };
 
 //Muhammed
 const initialize = async function initialize(db) {
