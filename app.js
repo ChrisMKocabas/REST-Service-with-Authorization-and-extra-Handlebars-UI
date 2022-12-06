@@ -199,9 +199,6 @@ router.route("/api/restaurants/").get((req, res) => {
 */
 
 
-
-
-
 //API ROUTE - login to confirm authorized users and give access to routes
 router
   .route("/login")
@@ -219,7 +216,9 @@ router
               res.render("error", {
                   message: "User details incorrect."}) 
             } else {
+              req.session.views = (req.session.views || 0) + 1
 
+              res.end(req.session.views + ' views')
             }
       } catch {
 
