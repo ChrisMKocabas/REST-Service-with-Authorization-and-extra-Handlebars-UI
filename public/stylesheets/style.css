@@ -100,3 +100,10 @@ body {
   text-decoration: none;
   color: #555;
 }
+
+.backtomain {
+  text-align: right;
+  vertical-align: top;
+  margin-right: 2rem;
+  margin-top: -1rem;
+}

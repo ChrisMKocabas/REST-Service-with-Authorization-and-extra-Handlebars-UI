@@ -100,7 +100,10 @@ router.route("/api/find-restaurant/:id").get((req, res) => {
         .lean()
         .exec();
       console.log(filteredRestaurants);
-      res.render("get-all", { data: [filteredRestaurants] });
+      res.render("get-all", {
+        data: [filteredRestaurants],
+        specialmessage: "Restaurant found:",
+      });
       // res.send(filteredRestaurants);
     } catch (err) {
       res.render("error", {
@@ -290,7 +293,10 @@ router
       try {
         let updatedRestaurant = await db.updateRestaurantById(data, id);
         console.log("Update by form");
-        res.render("get-all", { data: [updatedRestaurant] });
+        res.render("get-all", {
+          data: [updatedRestaurant],
+          specialmessage: "Restaurant updated successfully!",
+        });
       } catch (err) {
         console.log(err);
       }
@@ -307,7 +313,10 @@ router
       try {
         let deletedRestaurant = await db.deleteRestaurantById(id);
         console.log(deletedRestaurant);
-        res.render("get-all", { data: [deletedRestaurant] });
+        res.render("get-all", {
+          data: [deletedRestaurant],
+          specialmessage: "Restaurant deleted successfully!",
+        });
       } catch (err) {
         console.log(err);
       }
@@ -356,7 +365,10 @@ router.route("/api/restaurantsadd").post((req, res) => {
     try {
       let newRestaurant = await db.addNewRestaurant(data);
       console.log("Create by form");
-      res.render("get-all", { data: newRestaurant });
+      res.render("get-all", {
+        data: newRestaurant,
+        specialmessage: "Restaurant created successfully:",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -428,7 +440,7 @@ router
     (async function () {
       try {
         let updatedRestaurant = await db.updateRestaurantById(data, id);
-        // res.render("get-all", { data: updatedRestaurant });
+
         res.send(updatedRestaurant);
       } catch (err) {
         console.log(err);
