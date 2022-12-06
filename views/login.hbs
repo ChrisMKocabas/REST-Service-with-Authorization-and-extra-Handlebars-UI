@@ -2,10 +2,9 @@
   <body>
     <form
   style="align-self:center;flex-direction:column; display: flex;justify-content:center-evenly;"
-  method="GET"
-  action="/"
+  method="POST"
   enctype="x-www-form-urlencoded"
-  onsubmit="encryptLogin()"
+  action="/login"
 >
 
   <div
@@ -18,18 +17,20 @@
         type="string"
         name="user"
         value=""
+        required
       /><br />
     </div>
     <div>
       <label for="password">Password</label>
       <input
         id="password"
-        type="string"
+        type="password"
         name="password"
         value=""
+        required
       /><br />
     </div>
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Login" />
 </form>
 </body>
 </html>

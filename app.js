@@ -30,6 +30,8 @@ var app = express();
 //import fs
 const fs = require("fs");
 
+//import crypto
+const crypto = require("crypto");
 //import and initialize cookie-session
 var cookieSession = require("cookie-session");
 app.use(
@@ -40,6 +42,7 @@ app.use(
     maxAge: 365 * 24 * 60 * 60 * 1000, 
   })
 );
+let Token; 
 
 // const bcrypt = require('bcrypt');
 // const salt =10;
@@ -91,9 +94,16 @@ app.use("/", router);
 router.use(cors({ origin: "*" }));
 
 
-// root route
-router.get("/", (req, res) => res.render("index", { name: "" }));
+//root route
+// router.get("/", (req, res) => res.render("index", { name: "" }));
 
+router.route("/").post((req, res) => {
+  if(req.session.Token){
+    res.render("index", { name: "" })
+    }else{
+    res.render("error")
+    }
+});
 /* 
 
 ----- FRONT END ROUTES START -----
@@ -202,29 +212,28 @@ router.route("/api/restaurants/").get((req, res) => {
 //API ROUTE - login to confirm authorized user and create cookie-session
 router
   .route("/login")
-  .post((req, res) => {
-    (async function () {
-      try {
-        const { user, password } = req.body;
+  .post(async (req, res) => {
     
-            await user.findOne({
-              where: {
-                user: req.body.userlogin
-              }
-            })
-            if (user != userlogin && password != passwordlogin){
-              res.render("error", {
-                  message: "User details incorrect."}) 
+      try {
+        let { user, password } = req.body;
+              
+        if (loginuser.user == user && loginpassword.password == password){
+             //generate random token
+              const uuid = crypto.randomUUID();
+              //update current user
+              let Token = uuid
+             //add token to session
+             req.session.Token = uuid
             } else {
-              req.session.views = (req.session.views || 0) + 1
-
-              res.end(req.session.views + ' views')
+                res.render("error", {
+                    message: "User details incorrect."}) 
             }
-      } catch {
+      } catch (err) {
+            console.log(err);
 
       }
     })
-  })
+  
   // .route("/login")
   // .post((req, res) => {
   //   
