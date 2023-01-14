@@ -1,0 +1,29 @@
+{
+  "name": "asn4-mongo-muhammedkocabas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammed Kocabas",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-router": "^0.0.1",
+    "express-validator": "^6.14.2",
+    "fs": "^0.0.1-security",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.7"
+  }
+}
