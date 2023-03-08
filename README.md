@@ -12,10 +12,9 @@ https://new-york-restaurants-registry.onrender.com
 
 
 Sample screens: 
-<img width="1652" alt="Screenshot 2023-03-01 at 4 06 46 PM" src="https://user-images.githubusercontent.com/75855099/222266186-91be90e3-4460-40f5-a5d9-fafc102bb8d6.png">
+<img width="1669" alt="Screenshot 2023-03-08 at 5 35 37 PM" src="https://user-images.githubusercontent.com/75855099/223867341-932daa47-7d69-41ac-858c-b21516cfd6f2.png">
 
 
-<img width="1660" alt="Screenshot 2023-03-01 at 4 08 46 PM" src="https://user-images.githubusercontent.com/75855099/222266201-30a33ef3-a376-4d58-ac83-27848dc0aa3d.png">
+<img width="1651" alt="Screenshot 2023-03-08 at 5 36 25 PM" src="https://user-images.githubusercontent.com/75855099/223867370-1272462c-f4e9-4168-b527-41777813fd2e.png">
 
-
-<img width="1661" alt="Screenshot 2023-03-01 at 4 09 11 PM" src="https://user-images.githubusercontent.com/75855099/222266205-f32784d1-8c45-4d64-8714-0151c42ffd7f.png">
+<img width="1649" alt="Screenshot 2023-03-08 at 5 37 22 PM" src="https://user-images.githubusercontent.com/75855099/223867375-630d194c-a99c-4898-b45d-dd9babc06d34.png">
