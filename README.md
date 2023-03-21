@@ -19,4 +19,3 @@ Sample screens:
 
 <img width="1649" alt="Screenshot 2023-03-08 at 5 37 22 PM" src="https://user-images.githubusercontent.com/75855099/223867375-630d194c-a99c-4898-b45d-dd9babc06d34.png">
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ChrisMKocabas&theme=tokyonight)
